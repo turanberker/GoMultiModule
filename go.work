@@ -1,0 +1,7 @@
+go 1.18
+
+use(
+ ./Authz/Service
+ ./Authz/Common
+ ./Product/Service
+)
