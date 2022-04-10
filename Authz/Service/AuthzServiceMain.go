@@ -1,12 +1,24 @@
 package main
 
 import (
-	"fmt"
+	"log"
+	"net/http"
 
 	"com.mbt.authz.common/service"
 )
 
+type apiHandler struct {
+	id int
+}
+
+func (apiHandler) ServeHTTP(http.ResponseWriter, *http.Request) {}
+
 func main() {
-	fmt.Println("Hello Autzh Service")
-	service.CommonServiceTest()
+
+	helloHandler := func(w http.ResponseWriter, req *http.Request) {
+		service.CommonServiceTest()
+	}
+
+	http.HandleFunc("/hello", helloHandler)
+	log.Fatal(http.ListenAndServe(":8081", nil))
 }

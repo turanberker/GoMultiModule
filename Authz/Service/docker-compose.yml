@@ -1,0 +1,22 @@
+version: "3.8"
+
+services:
+  authz:
+    container_name: authz
+
+    build:
+      context: .
+      dockerfile: Dockerfile
+   # env_file:
+   #   - application.env
+   # environment:
+   #   - DB_ADDRESS=db
+    
+    volumes:
+      - .:/app
+    ports:
+      - 8081:8081
+networks:
+  network:
+    name: tucows_default
+
